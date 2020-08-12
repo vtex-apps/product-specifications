@@ -83,8 +83,8 @@ const ProductSpecificationText: FC<Props> = ({
         data-specification-name={specification.originalName}
         data-specification-value={value.value}
         className={applyModifiers(handles.specificationValue, [
-          value.isFirst ? 'isFirst' : '',
-          value.isLast ? 'isLast' : '',
+          value.isFirst ? 'first' : '',
+          value.isLast ? 'last' : '',
         ])}
       >
         {value.value}

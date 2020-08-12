@@ -134,13 +134,13 @@ Feel free to any other blocks around the blocks provided. One may add a [flex-la
 
 To apply CSS customization in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| CSS Handles                   |
-| ----------------------------- |
-| `groupName`                   |
-| `specificationName`           |
-| `specificationValue`          |
-| `specificationValue--isFirst` |
-| `specificationValue--isLast`  |
+| CSS Handles                 |
+| --------------------------- |
+| `groupName`                 |
+| `specificationName`         |
+| `specificationValue`        |
+| `specificationValue--first` |
+| `specificationValue--last`  |
 
 <!-- DOCS-IGNORE:start -->
 
