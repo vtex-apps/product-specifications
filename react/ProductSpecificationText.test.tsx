@@ -95,8 +95,8 @@ test('ProductSpecificationText should render first and last handles', () => {
   )
 
   expect(getByText('Value 1')).toBeInTheDocument()
-  expect(getByText('Value 1')).toHaveClass('specificationName--isFirst')
-  expect(getByText('Value 1')).not.toHaveClass('specificationName--isLast')
+  expect(getByText('Value 1')).toHaveClass('specificationValue--isFirst')
+  expect(getByText('Value 1')).not.toHaveClass('specificationValue--isLast')
   expect(queryByText('Value 2')).not.toBeInTheDocument()
   expect(queryByText('Value 3')).not.toBeInTheDocument()
 
@@ -112,8 +112,8 @@ test('ProductSpecificationText should render first and last handles', () => {
 
   expect(queryByText('Value 1')).not.toBeInTheDocument()
   expect(getByText('Value 2')).toBeInTheDocument()
-  expect(getByText('Value 2')).not.toHaveClass('specificationName--isFirst')
-  expect(getByText('Value 2')).not.toHaveClass('specificationName--isLast')
+  expect(getByText('Value 2')).not.toHaveClass('specificationValue--isFirst')
+  expect(getByText('Value 2')).not.toHaveClass('specificationValue--isLast')
   expect(queryByText('Value 3')).not.toBeInTheDocument()
 
   rerender(
@@ -128,6 +128,6 @@ test('ProductSpecificationText should render first and last handles', () => {
   expect(queryByText('Value 1')).not.toBeInTheDocument()
   expect(queryByText('Value 2')).not.toBeInTheDocument()
   expect(getByText('Value 3')).toBeInTheDocument()
-  expect(getByText('Value 3')).not.toHaveClass('specificationName--isFirst')
-  expect(getByText('Value 3')).toHaveClass('specificationName--isLast')
+  expect(getByText('Value 3')).not.toHaveClass('specificationValue--isFirst')
+  expect(getByText('Value 3')).toHaveClass('specificationValue--isLast')
 })
