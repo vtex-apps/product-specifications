@@ -12,7 +12,7 @@
 
 App that provides blocks to render product specifications.
 
-![Media Placeholder](https://user-images.githubusercontent.com/52087100/71204177-42ca4f80-227e-11ea-89e6-e92e65370c69.png)
+![Product Specifications Example](https://user-images.githubusercontent.com/284515/90801619-859c6580-e2ec-11ea-9a7d-6e80d8f3d315.png)
 
 ## Configuration
 
