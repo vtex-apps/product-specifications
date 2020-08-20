@@ -91,23 +91,48 @@ Feel free to any other blocks around the blocks provided. One may add a [flex-la
 
 ```json
 {
-  "product-specification-group": {
-    "children": [
-      "product-specification-text#group",
-      "flex-layout.row#spec-group"
-    ]
+  "product-specification-group#table": {
+    "children": ["flex-layout.row#spec-group"]
   },
   "flex-layout.row#spec-group": {
     "props": {
-      "blockClass": "specificationGroup"
+      "blockClass": "productSpecificationGroup"
     },
-    "children": ["product-specification"]
+    "children": ["flex-layout.col#spec-group"]
+  },
+  "flex-layout.col#spec-group": {
+    "children": ["flex-layout.row#spec-group-name", "product-specification"]
+  },
+  "flex-layout.row#spec-group-name": {
+    "props": {
+      "blockClass": "productSpecificationGroupName"
+    },
+    "children": ["product-specification-text#group"]
   },
   "product-specification": {
-    "children": [
-      "product-specification-text#specification",
-      "product-specification-values"
-    ]
+    "children": ["flex-layout.row#spec-item"]
+  },
+  "flex-layout.row#spec-item": {
+    "props": {
+      "blockClass": "productSpecification"
+    },
+    "children": ["flex-layout.col#spec-name", "flex-layout.col#spec-value"]
+  },
+  "flex-layout.col#spec-name": {
+    "props": {
+      "blockClass": "productSpecificationName",
+      "width": {
+        "mobile": "50%",
+        "desktop": "25%"
+      }
+    },
+    "children": ["product-specification-text#specification"]
+  },
+  "flex-layout.col#spec-value": {
+    "props": {
+      "blockClass": "productSpecificationValue"
+    },
+    "children": ["product-specification-values"]
   },
   "product-specification-values": {
     "children": ["product-specification-text#value"]
