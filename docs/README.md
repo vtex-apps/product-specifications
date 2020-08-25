@@ -53,6 +53,19 @@ This block uses the [ICU Message Format](https://format-message.github.io/icu-me
 | `isFirstSpecificationValue` | `boolean` | Value is `true` if it's the first specification value, `false` otherwise. Variable available when bellow of a `product-specification-value`.            |
 | `isLastSpecificationValue`  | `boolean` | Value is `true` if it's the last specification value, `false` otherwise. Variable available when bellow of a `product-specification-value`.             |
 
+### `product-specification-group` props
+
+| Prop name | Type     | Description                                                 | Default value |
+| --------- | -------- | ----------------------------------------------------------- | ------------- |
+| `filter`  | `object` | You can filter the specifications to be shown by the block. | ``            |
+
+- `filter` object:
+
+| Prop name             | Type       | Description                                                                                                                                                                | Default value |
+| --------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `type`                | `enum`     | Use `hide` to hide the specification groups of the `specificationGroups` property; Use `show` to only show the specification groups of the `specificationGroups` property. | ``            |
+| `specificationGroups` | `string[]` | Array of specification group names to be hidden or shown based on the `type` property.                                                                                     | ``            |
+
 ## Example
 
 ```json

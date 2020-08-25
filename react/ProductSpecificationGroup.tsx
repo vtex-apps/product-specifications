@@ -1,12 +1,45 @@
-import React, { FC, useContext } from 'react'
+import React, { FC, useMemo, useContext, ReactNode } from 'react'
 import { useProduct, SpecificationGroup } from 'vtex.product-context'
 
-const removeAll = (groups: SpecificationGroup[]) => {
-  return groups.filter((group) => group.originalName !== 'allSpecifications')
+interface ProductSpecificationGroupProps {
+  filter?: {
+    type: 'hide' | 'show'
+    specificationGroups: string[]
+  }
+  children: ReactNode
 }
 
-const ProductSpecificationGroup: FC = ({ children }) => {
+const defaultFilter: ProductSpecificationGroupProps['filter'] = {
+  type: 'hide',
+  specificationGroups: [],
+}
+
+const ProductSpecificationGroup: FC<ProductSpecificationGroupProps> = ({
+  filter = defaultFilter,
+  children,
+}) => {
   const { product } = useProduct()
+
+  const { type, specificationGroups: filterSpecificationGroups } = filter
+  const specificationGroups = product?.specificationGroups ?? []
+
+  const groups = useMemo(
+    () =>
+      specificationGroups.filter((group) => {
+        if (group.originalName === 'allSpecifications') {
+          return false
+        }
+
+        const haveGroup = filterSpecificationGroups.includes(group.originalName)
+
+        if ((type === 'hide' && haveGroup) || (type === 'show' && !haveGroup)) {
+          return false
+        }
+
+        return true
+      }),
+    [specificationGroups, type, filterSpecificationGroups]
+  )
 
   if (!product) {
     return null
@@ -14,7 +47,7 @@ const ProductSpecificationGroup: FC = ({ children }) => {
 
   return (
     <>
-      {removeAll(product.specificationGroups).map((group, index) => (
+      {groups.map((group, index) => (
         <ProductSpecificationGroupProvider key={index} group={group}>
           {children}
         </ProductSpecificationGroupProvider>

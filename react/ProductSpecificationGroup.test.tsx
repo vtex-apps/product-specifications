@@ -61,3 +61,57 @@ test('should not have allSpecifications rendered', () => {
 
   expect(queryByText('allSpecifications')).not.toBeInTheDocument()
 })
+
+test('should filter specification groups', () => {
+  mockUseProduct.mockImplementation(() => classicShoes)
+
+  const { queryByText, rerender } = render(
+    <ProductSpecificationGroup
+      filter={{ type: 'hide', specificationGroups: ['Masculino'] }}
+    >
+      <ProductSpecificationText message="{groupName}" />
+    </ProductSpecificationGroup>
+  )
+
+  expect(queryByText('Masculino')).not.toBeInTheDocument()
+  expect(queryByText('Medicamentos')).toBeInTheDocument()
+
+  rerender(
+    <ProductSpecificationGroup
+      filter={{ type: 'show', specificationGroups: ['Masculino'] }}
+    >
+      <ProductSpecificationText message="{groupName}" />
+    </ProductSpecificationGroup>
+  )
+
+  expect(queryByText('Masculino')).toBeInTheDocument()
+  expect(queryByText('Medicamentos')).not.toBeInTheDocument()
+
+  rerender(
+    <ProductSpecificationGroup
+      filter={{
+        type: 'hide',
+        specificationGroups: ['Medicamentos', 'Masculino'],
+      }}
+    >
+      <ProductSpecificationText message="{groupName}" />
+    </ProductSpecificationGroup>
+  )
+
+  expect(queryByText('Masculino')).not.toBeInTheDocument()
+  expect(queryByText('Medicamentos')).not.toBeInTheDocument()
+
+  rerender(
+    <ProductSpecificationGroup
+      filter={{
+        type: 'show',
+        specificationGroups: ['Medicamentos', 'Masculino'],
+      }}
+    >
+      <ProductSpecificationText message="{groupName}" />
+    </ProductSpecificationGroup>
+  )
+
+  expect(queryByText('Masculino')).toBeInTheDocument()
+  expect(queryByText('Medicamentos')).toBeInTheDocument()
+})
