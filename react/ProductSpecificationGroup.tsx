@@ -30,9 +30,9 @@ const ProductSpecificationGroup: FC<ProductSpecificationGroupProps> = ({
           return false
         }
 
-        const haveGroup = filterSpecificationGroups.includes(group.originalName)
+        const hasGroup = filterSpecificationGroups.includes(group.originalName)
 
-        if ((type === 'hide' && haveGroup) || (type === 'show' && !haveGroup)) {
+        if ((type === 'hide' && hasGroup) || (type === 'show' && !hasGroup)) {
           return false
         }
 
