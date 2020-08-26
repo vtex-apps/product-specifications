@@ -84,14 +84,18 @@ test('ProductSpecificationText should render first and last handles', () => {
     },
   }))
 
-  const { getByText, queryByText, rerender } = render(
+  const Text = ({ message }: { message: string }) => (
     <ProductSpecificationGroup>
       <ProductSpecification>
         <ProductSpecificationValues>
-          <ProductSpecificationText message="{isFirstSpecificationValue, select, true {{specificationValue}} other { }}" />
+          <ProductSpecificationText message={message} />
         </ProductSpecificationValues>
       </ProductSpecification>
     </ProductSpecificationGroup>
+  )
+
+  const { getByText, queryByText, rerender } = render(
+    <Text message="{isFirstSpecificationValue, select, true {{specificationValue}} other { }}" />
   )
 
   expect(getByText('Value 1')).toBeInTheDocument()
@@ -101,13 +105,7 @@ test('ProductSpecificationText should render first and last handles', () => {
   expect(queryByText('Value 3')).not.toBeInTheDocument()
 
   rerender(
-    <ProductSpecificationGroup>
-      <ProductSpecification>
-        <ProductSpecificationValues>
-          <ProductSpecificationText message="{isLastSpecificationValue, select, false {{isFirstSpecificationValue, select, false {{specificationValue}} other { } }} other { }}" />
-        </ProductSpecificationValues>
-      </ProductSpecification>
-    </ProductSpecificationGroup>
+    <Text message="{isLastSpecificationValue, select, false {{isFirstSpecificationValue, select, false {{specificationValue}} other { } }} other { }}" />
   )
 
   expect(queryByText('Value 1')).not.toBeInTheDocument()
@@ -117,13 +115,7 @@ test('ProductSpecificationText should render first and last handles', () => {
   expect(queryByText('Value 3')).not.toBeInTheDocument()
 
   rerender(
-    <ProductSpecificationGroup>
-      <ProductSpecification>
-        <ProductSpecificationValues>
-          <ProductSpecificationText message="{isLastSpecificationValue, select, true {{specificationValue}} other { }}" />
-        </ProductSpecificationValues>
-      </ProductSpecification>
-    </ProductSpecificationGroup>
+    <Text message="{isLastSpecificationValue, select, true {{specificationValue}} other { }}" />
   )
   expect(queryByText('Value 1')).not.toBeInTheDocument()
   expect(queryByText('Value 2')).not.toBeInTheDocument()
