@@ -28,14 +28,14 @@ Now, you can use all the blocks exported by the `product-specifications` app. Ch
 
 | Block name                    | Description                                                                                                     |
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `product-specification-group` | Renders its children for every product specification group.                                                     |
-| `product-specification`       | Renders its children for every product specification. It should be placed bellow `product-specification-group`. |
-| `product-specification-value` | Renders its children for every product value. It should be placed bellow `product-specification`.               |
-| `product-specification-text`  | Renders the data of a specification group, specification, and specification value.                              |
+| `product-specification-group` | Renders product specification group.                                                     |
+| `product-specification`       | Renders product specification. It should be declared as a children of `product-specification-group`. |
+| `product-specification-value` | Renders product specification value. It should be declared as a children of `product-specification`.  |
+| `product-specification-text`  | Mandatory children of `product-specification-group`, `product-specification` and `product-specification-value`. Depending on which block it is declared, the `product-specification-text` renders data regarding a specification group, a specification, or a specification value. |
 
 ### Step 2 - Adding the Product Specifications' blocks to your theme's templates
 
-Copy the example stated below and paste it in your theme's desired template. Remember to add the `product-specification-group` block to the template's block list if needed.  
+Copy the example stated below and paste it in your theme's desired template, making the necessary changes according to your desire. Remember to add the `product-specification-group` block to the template's block list if needed.  
 
 ```json
 {
