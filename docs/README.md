@@ -20,7 +20,7 @@ In your theme's `manifest.json`, add the Product Specification app as a dependen
 
 ```json
 "dependencies": {
-  "vtex.product-specification": "1.x"
+  "vtex.product-specifications": "1.x"
 }
 ```
 
