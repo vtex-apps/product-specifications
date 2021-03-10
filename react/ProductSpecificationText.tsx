@@ -87,7 +87,7 @@ const ProductSpecificationText: FC<Props> = ({
           value.isLast ? 'last' : '',
         ])}
       >
-        {value.value}
+        <div dangerouslySetInnerHTML={{ __html: value.value }} />
       </span>
     )
     result.isFirstSpecificationValue = value.isFirst
