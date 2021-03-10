@@ -9,6 +9,7 @@ import { useProductSpecificationValue } from './ProductSpecificationValues'
 interface Props {
   message: string
   markers?: string[]
+  conditionBySpecName?: string[]
 }
 
 interface MessageValues {
@@ -28,6 +29,7 @@ const CSS_HANDLES = [
 const ProductSpecificationText: FC<Props> = ({
   message = '',
   markers = [],
+  conditionBySpecName = ['']
 }) => {
   const handles = useCssHandles(CSS_HANDLES)
   const group = useProductSpecificationGroup()
@@ -62,33 +64,51 @@ const ProductSpecificationText: FC<Props> = ({
     }
 
     result.specificationName = (
-      <span
-        key="specificationName"
-        data-specification-group={group.originalName}
-        data-specification-name={specification.originalName}
-        className={handles.specificationName}
-      >
-        {specification.name}
-      </span>
+      <>
+        {conditionBySpecName.map((values) =>
+          (values === specification.name || values.length === 0) ? (
+            <span
+              key="specificationName"
+              data-specification-group={group.originalName}
+              data-specification-name={specification.originalName}
+              className={handles.specificationName}
+            >
+              {specification.name}
+            </span>
+          ) : (
+            ''
+          )
+        )}
+      </>
     )
+
+    console.log(specification)
 
     if (!value) {
       return result
     }
 
     result.specificationValue = (
-      <span
-        key="specificationValue"
-        data-specification-group={group.originalName}
-        data-specification-name={specification.originalName}
-        data-specification-value={value.value}
-        className={applyModifiers(handles.specificationValue, [
-          value.isFirst ? 'first' : '',
-          value.isLast ? 'last' : '',
-        ])}
-      >
-        {value.value}
-      </span>
+      <>
+        {conditionBySpecName.map((values) =>
+          values === specification.name || values.length === 0 ? (
+            <span
+              key="specificationValue"
+              data-specification-group={group.originalName}
+              data-specification-name={specification.originalName}
+              data-specification-value={value.value}
+              className={applyModifiers(handles.specificationValue, [
+                value.isFirst ? 'first' : '',
+                value.isLast ? 'last' : '',
+              ])}
+            >
+              {value.value}
+            </span>
+          ) : (
+            ''
+          )
+        )}
+      </>
     )
     result.isFirstSpecificationValue = value.isFirst
     result.isLastSpecificationValue = value.isLast
