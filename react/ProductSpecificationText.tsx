@@ -9,7 +9,7 @@ import { useProductSpecificationValue } from './ProductSpecificationValues'
 interface Props {
   message: string
   markers?: string[]
-  specificationConditionList?: string[]
+  conditionBySpecName?: string[]
 }
 
 interface MessageValues {
@@ -29,7 +29,7 @@ const CSS_HANDLES = [
 const ProductSpecificationText: FC<Props> = ({
   message = '',
   markers = [],
-  specificationConditionList = [''],
+  conditionBySpecName = ['']
 }) => {
   const handles = useCssHandles(CSS_HANDLES)
   const group = useProductSpecificationGroup()
@@ -65,8 +65,8 @@ const ProductSpecificationText: FC<Props> = ({
 
     result.specificationName = (
       <>
-        {specificationConditionList.map((values) =>
-          values === specification.name ? (
+        {conditionBySpecName.map((values) =>
+          (values === specification.name || values.length === 0) ? (
             <span
               key="specificationName"
               data-specification-group={group.originalName}
@@ -90,7 +90,7 @@ const ProductSpecificationText: FC<Props> = ({
 
     result.specificationValue = (
       <>
-        {specificationConditionList.map((values) =>
+        {conditionBySpecName.map((values) =>
           values === specification.name || values.length === 0 ? (
             <span
               key="specificationValue"
