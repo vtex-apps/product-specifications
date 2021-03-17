@@ -30,7 +30,7 @@ Now, you can use all the blocks exported by the `product-specifications` app. Ch
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `product-specification-group` | Renders the product specification group.                                                     |
 | `product-specification`       | Renders the product specification. It should be declared as a children of `product-specification-group`. |
-| `product-specification-value` | Renders the product specification value. It should be declared as a children of `product-specification`.  |
+| `product-specification-value` | Renders the product specification value. It should be declared as a children of `product-specification`. It is possible to render with `HTML`. |
 | `product-specification-text`  | Mandatory children of `product-specification-group`, `product-specification` and `product-specification-value`. Depending on which block it is declared, the `product-specification-text` renders data regarding a specification group, a specification, or a specification value. |
 
 ### Step 2 - Adding the Product Specifications' blocks to your theme's templates
