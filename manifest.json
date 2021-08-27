@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "product-specifications",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "title": "Product Specifications",
   "description": "",
   "builders": {
