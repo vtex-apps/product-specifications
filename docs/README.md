@@ -35,7 +35,7 @@ Now, you can use all the blocks exported by the `product-specifications` app. Ch
 
 ### Step 2 - Adding the Product Specifications' blocks to your theme's templates
 
-Copy the example stated below and paste it in your theme's desired template, making the necessary changes according to your desire. Remember to add the `product-specification-group` block to the template's block list if needed.  
+Copy the example stated below and paste it into your theme's desired template, making the necessary changes according to your desire. Remember to add the `product-specification-group` block to the template's block list if needed.  
 
 ```json
 {
