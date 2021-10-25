@@ -3,16 +3,35 @@ import { Specification } from 'vtex.product-context'
 
 import { useProductSpecificationGroup } from './ProductSpecificationGroup'
 
-const ProductSpecificationGroup: FC = ({ children }) => {
+interface ProductSpecificationGroupProps {
+  filter?: {
+    type: 'hide' | 'show'
+    specificationNames: string[]
+  }
+}
+
+
+const ProductSpecificationGroup: FC<ProductSpecificationGroupProps> = ({ children, filter= {type: 'hide', specificationNames: []} }) => {
   const group = useProductSpecificationGroup()
 
   if (!group) {
     return null
   }
+  
+  let specifications = group.specifications;
+
+  if (filter.specificationNames?.length > 0 && filter.type == 'show') {
+    specifications = specifications.filter((specification) => 
+    filter.specificationNames.includes(specification.originalName) )
+  }
+  if (filter.specificationNames?.length > 0 && filter.type == 'hide') { 
+    specifications = specifications.filter((specification) => 
+    !filter.specificationNames.includes(specification.originalName) )
+  }
 
   return (
     <>
-      {group.specifications.map((specification, index) => (
+      {specifications.map((specification, index) => (
         <ProductSpecificationProvider key={index} specification={specification}>
           {children}
         </ProductSpecificationProvider>
