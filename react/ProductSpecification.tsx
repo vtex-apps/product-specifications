@@ -20,7 +20,7 @@ const ProductSpecificationGroup: FC<ProductSpecificationGroupProps> = ({ childre
   
   let specifications = group.specifications;
 
-  if (filter.specificationNames?.length > 0 && filter.type == 'show') {
+  if (filter.specificationNames?.length > 0 && filter.type === 'show') {
     specifications = specifications.filter((specification) => 
     filter.specificationNames.includes(specification.originalName) )
   }
