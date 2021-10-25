@@ -150,7 +150,20 @@ You also can use other blocks to wrap the blocks provided by the Product Specifi
 | Prop name             | Type       | Description            | Default value |
 | --------------------- | ---------- | --------------------- | ------------- |
 | `specificationGroups` | `[string]` | Array of specification group names to be hidden or shown (according to what is defined in the `type` property) by the `product-specification-group` block. | `undefined`            |
-| `type`       | `enum`     | Whether the specification group names passed to the `specificationGroups` prop should be displayed or hidden on the UI. Possible values are: `hide` (hides specification groups declared in the `specificationGroups` prop) or `show` (only shows the specification groups declared in the `specificationGroups` prop). | `undefined`            |
+| `type`       | `enum`     | Whether the specification group names passed to the `specificationGroups` prop should be displayed or hidden on the UI. Possible values are: `hide` (hides specification groups declared in the `specificationGroups` prop) or `show` (only shows the specification groups declared in the `specificationGroups` prop). | `hide`            |
+
+### `product-specification` props
+
+| Prop name | Type     | Description                                                 | Default value |
+| --------- | -------- | ----------------------------------------------------------- | ------------- |
+| `filter`  | `object` | Filters the specifications that should be displayed by the block. | `undefined`    |
+
+- **`filter` object:**
+
+| Prop name             | Type       | Description            | Default value |
+| --------------------- | ---------- | --------------------- | ------------- |
+| `specificationNames` | `[string]` | Array of specification group names to be hidden or shown (according to what is defined in the `type` property) by the `product-specification-group` block. | `undefined`            |
+| `type`       | `enum`     | Whether the specification group names passed to the `specificationNames` prop should be displayed or hidden on the UI. Possible values are: `hide` (hides specification groups declared in the `specificationNames` prop) or `show` (only shows the specification groups declared in the `specificationNames` prop). | `hide`            |
 
 #### `product-specification-text` props
 
