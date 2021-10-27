@@ -2,17 +2,34 @@ import React, { FC, useContext } from 'react'
 import { Specification } from 'vtex.product-context'
 
 import { useProductSpecificationGroup } from './ProductSpecificationGroup'
+import { filterSpecification, identityNoop } from './utils/filterSpecifications'
 
-const ProductSpecificationGroup: FC = ({ children }) => {
+interface ProductSpecificationGroupProps {
+  filter?: {
+    type: 'hide' | 'show'
+    specificationNames: string[]
+  }
+}
+
+
+const ProductSpecificationGroup: FC<ProductSpecificationGroupProps> = ({ children, filter = {type: 'show', specificationNames: []} }) => {
   const group = useProductSpecificationGroup()
 
   if (!group) {
     return null
   }
+  
+  const specifications = filterSpecification({
+    specifications: group.specifications,
+    filters: {
+      hide: filter.type === 'show' ? (specification: string) => filter.specificationNames.includes(specification) : identityNoop,
+      show: filter.type === 'hide' ? (specification: string) => !filter.specificationNames.includes(specification) : identityNoop
+    }
+  })
 
   return (
     <>
-      {group.specifications.map((specification, index) => (
+      {specifications.map((specification, index) => (
         <ProductSpecificationProvider key={index} specification={specification}>
           {children}
         </ProductSpecificationProvider>
