@@ -1,10 +1,40 @@
-import React, { FC, useContext } from 'react'
+import React, { FC, useContext, ReactNode, useMemo } from 'react'
 import { Specification } from 'vtex.product-context'
 
 import { useProductSpecificationGroup } from './ProductSpecificationGroup'
 
-const ProductSpecificationGroup: FC = ({ children }) => {
+interface ProductSpecificationProps {
+  filter?: {
+    type: 'hide' | 'show'
+    specifications: string[]
+  }
+  children: ReactNode
+}
+
+const defaultFilter: ProductSpecificationProps['filter'] = {
+  type: 'hide',
+  specifications: [],
+}
+
+const ProductSpecificationGroup: FC<ProductSpecificationProps> = ({
+  filter = defaultFilter,
+  children }) => {
   const group = useProductSpecificationGroup()
+  const specificationsGroup = group?.specifications
+  const { type, specifications: filterSpecificationGroups } = filter
+
+  const specification = useMemo(
+    () =>
+      specificationsGroup?.filter((specification) => {
+        const hasSpecification = filterSpecificationGroups.includes(specification.originalName)
+        if ((type === 'hide' && hasSpecification) || (type === 'show' && !hasSpecification)) {
+          return false
+        }
+
+        return true
+      }),
+    [specificationsGroup, type, filterSpecificationGroups]
+  )
 
   if (!group) {
     return null
@@ -12,7 +42,7 @@ const ProductSpecificationGroup: FC = ({ children }) => {
 
   return (
     <>
-      {group.specifications.map((specification, index) => (
+      {specification?.map((specification, index) => (
         <ProductSpecificationProvider key={index} specification={specification}>
           {children}
         </ProductSpecificationProvider>
