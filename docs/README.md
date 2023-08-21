@@ -152,6 +152,19 @@ You can also use other blocks to wrap the blocks provided by the Product Specifi
 | `specificationGroups` | `[string]` | Array of specification group names to be hidden or shown (depending on what is defined in the `type` property) by the `product-specification-group` block. | `undefined`   |
 | `type` | `enum` | Determines whether the specification group names passed to the `specificationGroups` prop should be displayed or hidden on the UI. Possible values are: `hide` (hides specification groups declared in the `specificationGroups` prop) or `show` (only shows the specification groups declared in the `specificationGroups` prop). | `undefined` |
 
+### `product-specification` props
+
+| Prop name | Type     | Description                                               | Default value |
+| --------- | -------- | --------------------------------------------------------- | ------------- |
+| `filter`  | `object` | Filters the specifications that the block should display. | `undefined`   |
+
+- **`filter` object:**
+
+| Prop name | Type | Description | Default value |
+| - | - | - | - |
+| `specifications` | `[string]` | Array of specifications names to be hidden or shown (depending on what is defined in the `type` property) by the `product-specification` block. | `undefined`   |
+| `type` | `enum` | Determines whether the specification names passed to the `specifications` prop should be displayed or hidden on the UI. Possible values are: `hide` (hides specifications declared in the `specificationGs` prop) or `show` (only shows the specifications declared in the `specifications` prop). | `undefined` |
+
 #### `product-specification-text` props
 
 | Prop name | Type | Description | Default value |
